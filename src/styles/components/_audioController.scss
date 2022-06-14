@@ -1,0 +1,55 @@
+.controller__wrapper {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+}
+.controller {
+  width: 98%;
+  max-width: 70em;
+  //   height: 6em;
+  padding: 1.2em;
+  border-radius: 20px;
+  margin: 1.7em auto;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+.controller:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 10em rgba(255, 255, 255, 0.4);
+  filter: blur(10px);
+}
+.controller__img {
+  width: 5em;
+  object-fit: contain;
+}
+.controls-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 10em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.controller__info {
+  margin-left: 1em;
+}
+.controls {
+  display: grid;
+  place-items: center;
+}
+.controls__play {
+  border-radius: 50%;
+  width: 3.5em;
+  height: 3.5em;
+  padding: 0.5em;
+
+  background-color: white;
+}

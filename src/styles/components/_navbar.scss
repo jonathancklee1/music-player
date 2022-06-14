@@ -1,0 +1,22 @@
+@use "../abstracts/" as *;
+.navbar {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  background-color: $nav-clr--light;
+  box-shadow: 0 0 1em 0 rgb(167, 167, 167);
+  padding: 1em 1.5em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  h1 {
+    margin-right: auto;
+    color: $dark-purple;
+  }
+  a {
+    font-size: 1.2rem;
+    margin-right: 1em;
+    color: $dark-purple;
+    font-weight: 700;
+  }
+}

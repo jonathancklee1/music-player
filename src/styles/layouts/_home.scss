@@ -1,0 +1,28 @@
+@use "../abstracts/" as *;
+
+.home__wrapper {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-image: linear-gradient(
+      (0deg, $background-clr, rgba(190, 190, 190, 0.2))
+    ),
+    url(../../assets/img/gunship.webp);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  h1 {
+    font-size: 4rem;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 2rem;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-weight: 700;
+  }
+}

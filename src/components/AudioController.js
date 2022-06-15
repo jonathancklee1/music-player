@@ -1,5 +1,11 @@
 import React from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay,
+  faBackwardStep,
+  faForwardStep,
+  faFastBackward,
+} from "@fortawesome/free-solid-svg-icons";
 function AudioController() {
   return (
     <div className="controller__wrapper">
@@ -14,9 +20,15 @@ function AudioController() {
           <h3 className="controller__artist">Gunship</h3>
         </div>
         <div className="controls-wrapper">
-          <div className="controls controls__prev">Prev</div>
-          <div className="controls controls__play">Play</div>
-          <div className="controls controls__next">Next</div>
+          <div className="controls controls__prev">
+            <FontAwesomeIcon icon={faBackwardStep} />
+          </div>
+          <div className="controls controls__play">
+            <FontAwesomeIcon icon={faPlay} />
+          </div>
+          <div className="controls controls__next">
+            <FontAwesomeIcon icon={faForwardStep} />
+          </div>
         </div>
       </div>
     </div>

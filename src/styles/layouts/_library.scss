@@ -1,0 +1,35 @@
+@use "../abstracts/" as *;
+@use "../utils/" as *;
+.library__container {
+  width: 100%;
+  background-image: linear-gradient(
+    (0deg, $background-clr, rgba(190, 190, 190, 0.2))
+  );
+  min-height: 100vh;
+}
+.library__content {
+  padding-top: 7em;
+  width: 80%;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1em;
+    text-align: center;
+
+  }
+}
+.playlist__container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding-bottom: 10em;
+}
+@include breakpoint("small") {
+  .library__content {
+    h1 {
+      text-align: left;
+    }
+  }
+}

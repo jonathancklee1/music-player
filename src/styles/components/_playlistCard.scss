@@ -1,0 +1,30 @@
+@use "../abstracts/" as *;
+.playlist__card {
+  max-width: 15em;
+  height: 20em;
+  padding: 1em;
+  background-color: $playlist-card-clr--light1;
+  border-radius: 15px;
+  cursor: pointer;
+  span {
+    display: block;
+    color: $white;
+  }
+  &:hover {
+    transition: all 0.5s ease;
+    background-color: $playlist-card-clr--light2;
+    transform: scale(1.03);
+  }
+}
+.playlist__cover {
+  max-width: 100%;
+  border-radius: 15px;
+  margin-bottom: 0.5em;
+}
+.playlist__name {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+.playlist__song-count {
+  font-size: 0.9rem;
+}

@@ -50,6 +50,15 @@
   display: grid;
   place-items: center;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.04);
+  }
+  svg {
+    font-size: 1.3rem;
+    &:hover {
+      color: rgb(73, 73, 73);
+    }
+  }
 }
 .controls__play {
   border-radius: 50%;

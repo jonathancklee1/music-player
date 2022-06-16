@@ -10,26 +10,32 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 9;
   h1 {
     margin-right: auto;
     color: $dark-blue;
   }
-  a {
-    font-size: 1.2rem;
 
-    color: $dark-blue;
-    font-weight: 700;
-    display: none;
-    &:not(:last-child) {
-      margin-right: 2em;
-    }
-    &:hover {
-      text-decoration: underline 3px;
-    }
-  }
   svg {
     font-size: 1.2rem;
+  }
+  ul {
+    background-color: $nav-clr--light;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    border-top: 1px solid rgb(185, 185, 185);
+    padding: 2.5em 1.5em 1em 1.5em;
+    li {
+      margin-bottom: 2em;
+      a {
+        color: $dark-blue;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+    }
   }
 }
 
@@ -39,8 +45,25 @@
     svg {
       display: none;
     }
-    a {
-      display: block;
+    ul {
+      border: none;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      li {
+        margin-bottom: 0;
+        &:not(:last-child) {
+          margin-right: 2em;
+        }
+        a {
+          font-size: 1.2rem;
+          &:hover {
+            border-bottom: 2px solid $dark-blue;
+          }
+        }
+      }
     }
   }
 }

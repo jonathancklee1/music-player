@@ -1,0 +1,50 @@
+@use "../abstracts/" as *;
+.login__container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-image: linear-gradient(
+    (0deg, $background-clr, rgba(190, 190, 190, 0.2))
+  );
+}
+.logo {
+  padding: 1em 1.5em;
+  font-size: 1.5rem;
+  color: $dark-blue;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.login__btn {
+  padding: 0.5em 1em;
+  background-color: $spotify-green;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.342);
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.spotify-icon {
+  max-width: 5em;
+  margin-bottom: 1em;
+}
+.content-wrapper {
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto;
+  h2 {
+    margin-bottom: 0.5em;
+    font-size: 1.9rem;
+  }
+  p {
+    margin-bottom: 2em;
+    font-size: 1.2rem;
+  }
+}

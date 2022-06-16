@@ -6,8 +6,14 @@ function Navbar() {
   return (
     <nav className="navbar">
       <h1> Musicify</h1>
-      <Link to="/">Home</Link>
-      <Link to="library">Your Library</Link>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="library">Your Library</Link>
+        </li>
+      </ul>
       <FontAwesomeIcon icon={faBars} />
     </nav>
   );

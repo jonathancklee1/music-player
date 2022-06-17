@@ -6,18 +6,22 @@ import Error from "./pages/Error";
 import Library from "./pages/Library";
 import Login from "./pages/Login";
 import { useEffect, useState } from "react";
+import { setClientToken } from "./spotify";
 function App() {
   const [token, setToken] = useState("");
 
   useEffect(() => {
     const token = window.localStorage.getItem("spotify-token");
     const hash = window.location.hash;
+    window.location.hash = "";
     if (!token && hash) {
       const _token = hash.split("&")[0].split("=")[1];
       localStorage.setItem("spotify-token", _token);
       setToken(_token);
+      setClientToken(_token);
     } else {
       setToken(token);
+      setClientToken(token);
     }
   }, []);
   return !token ? (

@@ -4,7 +4,6 @@ import {
   faPlay,
   faBackwardStep,
   faForwardStep,
-  faFastBackward,
 } from "@fortawesome/free-solid-svg-icons";
 function AudioController() {
   return (

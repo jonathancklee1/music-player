@@ -5,15 +5,21 @@
   padding: 1em;
   background-color: $playlist-card-clr--light1;
   border-radius: 15px;
+  position: relative;
   cursor: pointer;
-  span {
-    display: block;
+  transition: 0.5s ease;
+
+  p {
     color: $white;
   }
   &:hover {
-    transition: all 0.5s ease;
+    transition: 0.5s ease;
     background-color: $playlist-card-clr--light2;
     transform: scale(1.03);
+  }
+  &:hover .playlist__play-btn {
+    opacity: 1;
+    transition: 0.5s ease;
   }
 }
 .playlist__cover {
@@ -23,8 +29,30 @@
 }
 .playlist__name {
   font-weight: 700;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.3em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .playlist__song-count {
   font-size: 0.9rem;
+}
+.playlist__play-btn {
+  width: 3em;
+  height: 3em;
+  background-color: rgb(52, 71, 134);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  opacity: 0;
+  transition: 0.5s ease;
+
+  svg {
+    color: white;
+  }
 }

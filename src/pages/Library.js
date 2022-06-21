@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
-import api from "../spotify";
 import PlaylistCard from "../components/PlaylistCard";
+import { useDataLayerValue } from "../DataLayer";
 
+import SpotifyWebApi from "spotify-web-api-js";
+const s = new SpotifyWebApi();
 function Library() {
-  const [playlistSongs, setPlaylistSongs] = useState([]);
+  const [{ playlists }, dispatch] = useDataLayerValue();
   useEffect(() => {
-    async function getPlaylists() {
-      const res = await api.get("me/playlists");
-      console.log(res.data.items);
-      setPlaylistSongs(res.data.items);
-      return res;
-    }
-    getPlaylists();
+    s.getUserPlaylists().then((playlist) => {
+      dispatch({
+        type: "SET_PLAYLISTS",
+        playlists: playlist.items,
+      });
+    });
   }, []);
-  const playlistSongComp = playlistSongs.map((song) => {
+  const playlistSongComp = playlists.map((song) => {
     return (
       <PlaylistCard
         key={song.id}
+        id={song.id}
         songCount={song.tracks.total}
         name={song.name}
         img={song.images[0].url}

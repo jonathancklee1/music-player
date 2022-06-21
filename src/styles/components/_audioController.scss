@@ -45,14 +45,20 @@
 .controller__info {
   display: none;
   margin-left: 1em;
+  max-width: 18em;
+  overflow: hidden;
 }
 .controls {
   display: grid;
   place-items: center;
   cursor: pointer;
   &:hover {
-    transform: scale(1.04);
+    transform: scale(1.05);
+    &.controls__play {
+      color: rgb(73, 73, 73);
+    }
   }
+
   svg {
     font-size: 1.3rem;
     &:hover {
@@ -68,6 +74,16 @@
 
   background-color: white;
 }
+.controller__song {
+  padding-left: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  animation: translateLeft 10s linear infinite;
+  font-size: 1.5rem;
+}
+.controller__artist {
+  font-size: 1rem;
+}
 @include breakpoint("small") {
   .controller__info {
     display: block;
@@ -76,5 +92,13 @@
 @include breakpoint("medium") {
   .controller__img {
     display: block;
+  }
+}
+@keyframes translateLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }

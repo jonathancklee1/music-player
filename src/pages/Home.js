@@ -1,15 +1,8 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import api from "../spotify";
+
 
 function Home() {
-  useEffect(() => {
-    async function getData() {
-      const res = await api.get("me");
-      console.log(res);
-    }
-    getData();
-  }, []);
+
   return (
     <main className="home__container">
       <div className="home__song-wrapper">

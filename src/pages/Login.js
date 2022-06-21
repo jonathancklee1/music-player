@@ -1,9 +1,9 @@
 import React from "react";
-import { loginEndpoint } from "../spotify";
+import loginEndpoint from "../spotify";
 function Login() {
   return (
     <>
-      <h1 className="logo"> Musicify</h1>
+      <h1 className="logo">Musicify</h1>
       <div className="login__container">
         <div className="content-wrapper">
           <img

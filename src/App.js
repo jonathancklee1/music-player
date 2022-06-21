@@ -6,22 +6,23 @@ import Error from "./pages/Error";
 import Library from "./pages/Library";
 import Login from "./pages/Login";
 import { useEffect, useState } from "react";
-import { setClientToken } from "./spotify";
+import { useDataLayerValue } from "./DataLayer";
+import SpotifyWebApi from "spotify-web-api-js";
+const s = new SpotifyWebApi();
 function App() {
-  const [token, setToken] = useState("");
+  const [{ token }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
-    const token = window.localStorage.getItem("spotify-token");
     const hash = window.location.hash;
     window.location.hash = "";
-    if (!token && hash) {
-      const _token = hash.split("&")[0].split("=")[1];
-      localStorage.setItem("spotify-token", _token);
-      setToken(_token);
-      setClientToken(_token);
-    } else {
-      setToken(token);
-      setClientToken(token);
+    const _token = hash.split("&")[0].split("=")[1];
+    if (_token) {
+      dispatch({
+        type: "SET_TOKEN",
+        token: _token,
+      });
+      console.log(token);
+      s.setAccessToken(_token);
     }
   }, []);
   return !token ? (

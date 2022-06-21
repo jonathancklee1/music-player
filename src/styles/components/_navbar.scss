@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9;
+  z-index: 99;
   h1 {
     margin-right: auto;
     color: $dark-blue;
@@ -23,11 +23,15 @@
   ul {
     background-color: $nav-clr--light;
     position: absolute;
-    top: 100%;
+    top: -300%;
     right: 0;
     left: 0;
     border-top: 1px solid rgb(185, 185, 185);
     padding: 2.5em 1.5em 1em 1.5em;
+    z-index: -1;
+    &.open {
+      top: 100%;
+    }
     li {
       margin-bottom: 2em;
       a {
@@ -37,6 +41,11 @@
       }
     }
   }
+}
+.profile-icon {
+  max-width: 3em;
+  border-radius: 50%;
+  display: none;
 }
 
 @include breakpoint("medium") {
@@ -52,6 +61,7 @@
       justify-content: center;
       align-items: center;
       padding: 0;
+      margin-right: 2em;
       li {
         margin-bottom: 0;
         &:not(:last-child) {
@@ -65,5 +75,8 @@
         }
       }
     }
+  }
+  .profile-icon {
+    display: block;
   }
 }

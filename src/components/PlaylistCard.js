@@ -1,15 +1,31 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { useOutletContext } from "react-router-dom";
+import { useDataLayerValue } from "../DataLayer";
+import SpotifyWebApi from "spotify-web-api-js";
 
+const s = new SpotifyWebApi();
 function PlaylistCard(props) {
-  const [playlistId, setPlaylistId] = useOutletContext();
+  const [{ currentSong }, dispatch] = useDataLayerValue();
+  function setPlaylist() {
+    s.getPlaylistTracks(props.id).then((track) => {
+      console.log(track.items[1].track);
+      dispatch({
+        type: "SET_CURRENTSONG",
+        currentSong: track.items[1].track,
+      });
+      console.log(currentSong?.preview_url);
+    });
+  }
   return (
     <div
       className="playlist__card"
       onClick={() => {
-        setPlaylistId(props.id);
+        dispatch({
+          type: "SET_PLAYING",
+          playing: true,
+        });
+        setPlaylist();
       }}
     >
       <img src={props.img} className="playlist__cover"></img>

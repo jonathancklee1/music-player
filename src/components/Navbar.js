@@ -19,6 +19,7 @@ function Navbar() {
         type: "SET_USER",
         user: user,
       });
+      
     });
   }, []);
 
@@ -33,7 +34,11 @@ function Navbar() {
           <Link to="library">Your Library</Link>
         </li>
       </ul>
-      <img className="profile-icon" src={user?.images[0].url}></img>
+      <img
+        className="profile-icon"
+        src={user?.images[0].url}
+        alt={user?.name}
+      ></img>
       <FontAwesomeIcon icon={faBars} onClick={handleToggle} />
     </nav>
   );

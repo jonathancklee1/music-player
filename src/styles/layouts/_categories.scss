@@ -1,0 +1,29 @@
+@use "../abstracts/" as *;
+@use "../utils/" as *;
+
+.categories__content {
+  padding-top: 7em;
+  width: 80%;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+}
+.categories__wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+  padding-bottom: 10em;
+  
+}
+@include breakpoint("small") {
+  .categories__content {
+    h1 {
+      text-align: left;
+    }
+  }
+}

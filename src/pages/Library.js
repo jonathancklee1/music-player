@@ -26,7 +26,7 @@ function Library() {
     );
   });
   return (
-    <div className="library__container">
+    <div className="container library__container">
       <div className="library__content">
         <h1>Your Library</h1>
         <div className="playlist__container">{playlistSongComp}</div>

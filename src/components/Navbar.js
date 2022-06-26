@@ -7,7 +7,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 
 const s = new SpotifyWebApi();
 function Navbar() {
-  const [isOpen, setOpen] = useState("false");
+  const [isOpen, setOpen] = useState(false);
   const handleToggle = () => {
     setOpen(!isOpen);
   };
@@ -19,7 +19,6 @@ function Navbar() {
         type: "SET_USER",
         user: user,
       });
-      
     });
   }, []);
 
@@ -29,6 +28,9 @@ function Navbar() {
       <ul className={isOpen ? "navbar__list open" : "navbar__list"}>
         <li>
           <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="categories">Categories</Link>
         </li>
         <li>
           <Link to="library">Your Library</Link>

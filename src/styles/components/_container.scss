@@ -1,0 +1,8 @@
+@use "../abstracts/" as *;
+.container {
+  width: 100%;
+  background-image: linear-gradient(
+    (0deg, $background-clr, rgba(190, 190, 190, 0.2))
+  );
+  min-height: 100vh;
+}

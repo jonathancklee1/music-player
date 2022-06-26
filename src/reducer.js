@@ -4,6 +4,7 @@ export const initialState = {
   playing: false,
   currentSong: null,
   token: null,
+  categories: [],
 };
 
 const reducer = (state, action) => {
@@ -18,6 +19,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         playlists: action.playlists,
+      };
+    case "SET_CATEGORIES":
+      return {
+        ...state,
+        categories: action.categories,
       };
     case "SET_CURRENTSONG":
       return {

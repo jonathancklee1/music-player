@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import { useEffect, useState } from "react";
 import { useDataLayerValue } from "./DataLayer";
 import SpotifyWebApi from "spotify-web-api-js";
+import Categories from "./pages/Categories";
 const s = new SpotifyWebApi();
 function App() {
   const [{ token }, dispatch] = useDataLayerValue();
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />}></Route>
+          <Route path="categories" element={<Categories />}></Route>
           <Route path="library" element={<Library />}></Route>
           <Route path="*" element={<Error />}></Route>
         </Route>

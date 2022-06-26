@@ -1,0 +1,30 @@
+@use "../abstracts/" as *;
+.category__card {
+  width: 15em;
+  height: 6em;
+  display: flex;
+  overflow: hidden;
+  background-color: $category-card-clr--light1;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.5s ease;
+  color: $white;
+  font-size: 1.2rem;
+  text-align: center;font-weight: bold;
+  &:hover{
+      background-color: $category-card-clr--light2;
+
+  }
+}
+.category__img {
+  object-fit: cover;
+  height: 100%;
+}
+.category__content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6em;
+}

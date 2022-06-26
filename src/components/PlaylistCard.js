@@ -12,7 +12,7 @@ function PlaylistCard(props) {
       console.log(track.items[1].track);
       dispatch({
         type: "SET_CURRENTSONG",
-        currentSong: track.items[1].track,
+        currentSong: track.items[2].track,
       });
       console.log(currentSong?.preview_url);
     });

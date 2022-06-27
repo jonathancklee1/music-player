@@ -1,3 +1,4 @@
+@use "../abstracts/" as *;
 @use "../utils/" as *;
 .controller__wrapper {
   width: 100vw;
@@ -31,8 +32,6 @@
 .controller__img {
   width: 5em;
   object-fit: contain;
-  display: none;
-  border: 1px solid rgb(112, 112, 112);
 }
 .controls-wrapper {
   display: flex;
@@ -85,9 +84,24 @@
 .controller__artist {
   font-size: 1rem;
 }
+.favourite-btn {
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 1.7rem;
+  transition: all 0.3s ease;
+  display: grid;
+  place-items: center;
+  svg {
+    color: $spotify-green;
+  }
+}
 @include breakpoint("small") {
   .controller__info {
     display: block;
+    // max-width: 9em;
+  }
+  .controller__img {
+    display: none;
   }
 }
 @include breakpoint("medium") {

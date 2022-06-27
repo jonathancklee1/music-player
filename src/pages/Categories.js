@@ -7,7 +7,7 @@ const s = new SpotifyWebApi();
 function Categories() {
   const [{ categories }, dispatch] = useDataLayerValue();
   useEffect(() => {
-    s.getCategories({ limit: 30 }).then((category) => {
+    s.getCategories({ limit: 50 }).then((category) => {
       console.log(category.categories.items);
       dispatch({
         type: "SET_CATEGORIES",
@@ -20,6 +20,7 @@ function Categories() {
     return (
       <CategoryCard
         key={categoryItem.id}
+        id={categoryItem.id}
         name={categoryItem.name}
         img={categoryItem.icons[0].url}
       />
@@ -29,6 +30,7 @@ function Categories() {
     <div className="container categories__container">
       <div className="categories__content">
         <h1>Categories</h1>
+        <p>Click to play a random song from each category</p>
         <div className="categories__wrapper">{categoryCards}</div>
       </div>
     </div>

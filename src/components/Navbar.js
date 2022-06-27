@@ -20,6 +20,7 @@ function Navbar() {
         user: user,
       });
     });
+    
   }, []);
 
   return (

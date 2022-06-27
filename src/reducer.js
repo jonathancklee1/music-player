@@ -2,6 +2,7 @@ export const initialState = {
   user: null,
   playlists: [],
   playing: false,
+  isFav: false,
   currentSong: null,
   token: null,
   categories: [],
@@ -29,6 +30,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentSong: action.currentSong,
+      };
+    case "SET_ISFAV":
+      return {
+        ...state,
+        isFav: action.isFav,
       };
     case "SET_PLAYING":
       return {

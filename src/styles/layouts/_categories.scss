@@ -11,6 +11,10 @@
     margin-bottom: 1em;
     text-align: center;
   }
+  p {
+    font-size: 1.4rem;
+    margin-bottom: 1em;
+  }
 }
 .categories__wrapper {
   display: flex;
@@ -18,7 +22,6 @@
   flex-wrap: wrap;
   gap: 2em;
   padding-bottom: 10em;
-  
 }
 @include breakpoint("small") {
   .categories__content {

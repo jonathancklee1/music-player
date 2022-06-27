@@ -3,6 +3,7 @@ const redirect_uri = "http://localhost:3000";
 const authEndpoint = "https://accounts.spotify.com/authorize?";
 const scopes = [
   "user-library-read",
+  "user-library-modify",
   "playlist-read-private",
   "user-read-currently-playing",
   "user-read-recently-played",

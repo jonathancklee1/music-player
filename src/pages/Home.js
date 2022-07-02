@@ -13,6 +13,9 @@ function Home() {
           {" "}
           {currentSong ? `by ${currentSong?.artists[0].name}` : ""}{" "}
         </h2>
+        <h1 className="home__name">
+          {!currentSong ? "Welcome To Musicify" : ""}
+        </h1>
       </div>
     </main>
   );

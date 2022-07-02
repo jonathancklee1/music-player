@@ -45,7 +45,7 @@
 .controller__info {
   display: none;
   margin-left: 1em;
-  max-width: 18em;
+  max-width: 34%;
   overflow: hidden;
 }
 .controls {
@@ -85,7 +85,10 @@
   font-size: 1rem;
 }
 .favourite-btn {
-  margin-left: auto;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(200%, -50%);
   cursor: pointer;
   font-size: 1.7rem;
   transition: all 0.3s ease;
@@ -94,11 +97,17 @@
   svg {
     color: $spotify-green;
   }
+  &:hover {
+    font-size: 1.8rem;
+  }
+}
+.Toastify__toast-container {
+  margin: 5em 0 0 0;
+  z-index: 5;
 }
 @include breakpoint("small") {
   .controller__info {
     display: block;
-    // max-width: 9em;
   }
   .controller__img {
     display: none;
@@ -106,6 +115,9 @@
 }
 @include breakpoint("medium") {
   .controller__img {
+    display: block;
+  }
+  .controller__info {
     display: block;
   }
 }

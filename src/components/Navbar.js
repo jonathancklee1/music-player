@@ -31,7 +31,7 @@ function Navbar() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="categories">Categories</Link>
+          <Link to="categories">Discover</Link>
         </li>
         <li>
           <Link to="library">Your Library</Link>

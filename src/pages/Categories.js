@@ -14,6 +14,13 @@ function Categories() {
         categories: category.categories.items,
       });
     });
+    s.getRecommendations({
+      seed_artists: "4NHQUGzhtTLFvgF5SZesLK",
+      // seed_genres: "classical,country",
+      // seed_tracks: "0c6xIDDpzE81m2q797ordA",
+    }).then((category) => {
+      console.log(category);
+    });
   }, []);
 
   const categoryCards = categories.map((categoryItem) => {
@@ -29,7 +36,7 @@ function Categories() {
   return (
     <div className="container categories__container">
       <div className="categories__content">
-        <h1>Categories</h1>
+        <h1>Discover</h1>
         <p>Click to play a random song from each category</p>
         <div className="categories__wrapper">{categoryCards}</div>
       </div>

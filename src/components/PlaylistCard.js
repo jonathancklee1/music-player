@@ -8,13 +8,20 @@ const s = new SpotifyWebApi();
 function PlaylistCard(props) {
   const [{ currentSong }, dispatch] = useDataLayerValue();
   function setPlaylist() {
-    s.getPlaylistTracks(props.id).then((track) => {
-      console.log(track.items[1].track);
+    s.getPlaylistTracks(props.id).then((tracks) => {
+      console.log(tracks.items);
+      dispatch({
+        type: "SET_CURRENT_PLAYLIST",
+        currentPlaylist: tracks.items,
+      });
       dispatch({
         type: "SET_CURRENTSONG",
-        currentSong: track.items[2].track,
+        currentSong: tracks.items[0].track,
       });
-      console.log(currentSong?.preview_url);
+      dispatch({
+        type: "SET_TRACK_NUMBER",
+        trackNumber: 0,
+      });
     });
   }
   return (

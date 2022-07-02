@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   faPlay,
   faBackwardStep,
@@ -14,13 +16,26 @@ import { useDataLayerValue } from "../DataLayer";
 
 const s = new SpotifyWebApi();
 function AudioController() {
-  const [{ currentSong, playing, isFav }, dispatch] = useDataLayerValue();
+  const [
+    { currentSong, playing, isFav, currentPlaylist, trackNumber },
+    dispatch,
+  ] = useDataLayerValue();
+  const favAdded = () => toast("Added to your favourites in Spotify");
+  const favError = () => toast("Removed from your favourites in Spotify");
 
   let audio = useRef();
   useEffect(() => {
     checkFavourite();
-    if (currentSong && currentSong?.preview_url == null) {
+
+    if (currentPlaylist) {
+      console.log(currentPlaylist[trackNumber]);
+    }
+    if (currentSong && currentSong?.preview_url === null) {
       alert("No Preview available");
+    }
+    if (audio.currentTime === 0) {
+      console.log("audio  reset");
+      playing = false;
     }
     if (!playing) {
       console.log("not playing");
@@ -30,6 +45,16 @@ function AudioController() {
       audio.current.play();
     }
   }, [currentSong, playing]);
+  useEffect(() => {
+    if (currentPlaylist) {
+      // console.log(currentPlaylist.length);
+      dispatch({
+        type: "SET_CURRENTSONG",
+        currentSong: currentPlaylist[trackNumber].track,
+      });
+    }
+  }, [currentPlaylist, trackNumber]);
+
   function togglePlay() {
     dispatch({
       type: "SET_PLAYING",
@@ -45,33 +70,96 @@ function AudioController() {
         type: "SET_ISFAV",
         isFav: true,
       });
+      favAdded();
+    } else if (isFav && currentSong) {
+      s.removeFromMySavedTracks([currentSong?.id]);
+      dispatch({
+        type: "SET_ISFAV",
+        isFav: false,
+      });
+      favError();
     } else {
       alert("Song unavailable or is already in your favourites!");
     }
   }
   function checkFavourite() {
-    return s.containsMySavedTracks([currentSong?.id]).then((result) => {
-      if (result[0] === true) {
+    try {
+      const inSavedTracks = s
+        .containsMySavedTracks([currentSong?.id])
+        .then((result) => {
+          if (result[0] === true) {
+            dispatch({
+              type: "SET_ISFAV",
+              isFav: true,
+            });
+          } else {
+            dispatch({
+              type: "SET_ISFAV",
+              isFav: false,
+            });
+          }
+          return result[0];
+        })
+        .catch((error) => console.log(error));
+      return inSavedTracks;
+    } catch (error) {
+      alert("No song selected!");
+    }
+  }
+  function getNextTrack() {
+    if (currentPlaylist) {
+      if (trackNumber == currentPlaylist.length) {
         dispatch({
-          type: "SET_ISFAV",
-          isFav: true,
+          type: "SET_TRACK_NUMBER",
+          trackNumber: 0,
         });
       } else {
         dispatch({
-          type: "SET_ISFAV",
-          isFav: false,
+          type: "SET_TRACK_NUMBER",
+          trackNumber: trackNumber + 1,
         });
       }
-      return result[0];
-    });
+    }
+  }
+  function getPrevTrack() {
+    if (currentPlaylist) {
+      if (trackNumber === 0) {
+        dispatch({
+          type: "SET_TRACK_NUMBER",
+          trackNumber: currentPlaylist.length - 1,
+        });
+      } else {
+        dispatch({
+          type: "SET_TRACK_NUMBER",
+          trackNumber: trackNumber - 1,
+        });
+      }
+    }
   }
 
   return (
     <>
       <div className="controller__wrapper">
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <audio
           ref={audio}
           src={!currentSong?.preview_url ? "" : currentSong?.preview_url}
+          onEnded={() => {
+            dispatch({
+              type: "SET_PLAYING",
+              playing: false,
+            });
+          }}
         />
         <div className="controller">
           <img
@@ -93,7 +181,17 @@ function AudioController() {
             </h3>
           </div>
           <div className="controls-wrapper">
-            <div className="controls controls__prev">
+            <div
+              className="controls controls__prev"
+              // onClick={() => {
+              //   const device = s.getMyDevices().then((id) => {
+              //     s.play("d38e178fafd40d35c704e8150b75cab892c3c08b");
+              //     console.log(id);
+              //     return id.devices[0].id;
+              //   });
+              // }}
+              onClick={getPrevTrack}
+            >
               <FontAwesomeIcon icon={faBackwardStep} />
             </div>
             <div className="controls controls__play" onClick={togglePlay}>
@@ -103,12 +201,12 @@ function AudioController() {
                 <FontAwesomeIcon icon={faPlay} />
               )}
             </div>
-            <div className="controls controls__next">
+            <div className="controls controls__next" onClick={getNextTrack}>
               <FontAwesomeIcon icon={faForwardStep} />
             </div>
-          </div>
-          <div className="favourite-btn" onClick={setFavourite}>
-            <FontAwesomeIcon icon={isFav ? faHeart : faRegHeart} />
+            <div className="favourite-btn" onClick={setFavourite}>
+              <FontAwesomeIcon icon={isFav ? faHeart : faRegHeart} />
+            </div>
           </div>
         </div>
       </div>

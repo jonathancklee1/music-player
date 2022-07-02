@@ -7,7 +7,7 @@ const s = new SpotifyWebApi();
 function Library() {
   const [{ playlists }, dispatch] = useDataLayerValue();
   useEffect(() => {
-    s.getUserPlaylists().then((playlist) => {
+    s.getUserPlaylists({ limit: 50 }).then((playlist) => {
       dispatch({
         type: "SET_PLAYLISTS",
         playlists: playlist.items,

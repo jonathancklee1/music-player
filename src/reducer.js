@@ -1,6 +1,8 @@
 export const initialState = {
   user: null,
   playlists: [],
+  genres: [],
+  selectedGenres: [],
   currentPlaylist: null,
   playing: false,
   isFav: false,
@@ -27,6 +29,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         categories: action.categories,
+      };
+    case "SET_GENRES":
+      return {
+        ...state,
+        genres: action.genres,
+      };
+    case "SET_SELECTED_GENRES":
+      return {
+        ...state,
+        selectedGenres: action.selectedGenres,
       };
     case "SET_CURRENTSONG":
       return {

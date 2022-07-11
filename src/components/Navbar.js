@@ -20,7 +20,6 @@ function Navbar() {
         user: user,
       });
     });
-    
   }, []);
 
   return (
@@ -29,6 +28,9 @@ function Navbar() {
       <ul className={isOpen ? "navbar__list open" : "navbar__list"}>
         <li>
           <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="recommend">Recommendations</Link>
         </li>
         <li>
           <Link to="categories">Discover</Link>

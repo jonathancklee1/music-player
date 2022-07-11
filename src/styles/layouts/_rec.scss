@@ -1,0 +1,56 @@
+@use "../abstracts/" as *;
+@use "../utils/" as *;
+.rec__content {
+  padding-top: 7em;
+  width: 80%;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  p {
+    font-size: 1.4rem;
+    margin-bottom: 1em;
+  }
+}
+.genre-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.3em;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+}
+.search-container {
+  //   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.results-container {
+  height: 20em;
+}
+.search--songs,
+.search--artists {
+  width: 100%;
+  margin-bottom: 1em;
+  label {
+    font-size: 1.2rem;
+    margin-bottom: 0.6em;
+  }
+}
+@include breakpoint("small") {
+  .rec__content {
+    h1 {
+      text-align: left;
+    }
+  }
+  .search--songs,
+  .search--artists {
+    width: 48%;
+  }
+  .search-container {
+    display: flex;
+  }
+}

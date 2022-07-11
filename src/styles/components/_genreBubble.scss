@@ -1,0 +1,21 @@
+@use "../abstracts/" as *;
+@use "../utils/" as *;
+.genre-bubble {
+  width: 100%;
+  max-width: 9em;
+  min-height: 3.5em;
+  border-radius: 35px;
+  color: white;
+  background-color: $bubble-clr;
+  padding: 0.3em 0.5em;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: $light-blue;
+  }
+  span {
+    text-transform: uppercase;
+  }
+}

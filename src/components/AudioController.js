@@ -108,7 +108,7 @@ function AudioController() {
   }
   function getNextTrack() {
     if (currentPlaylist) {
-      if (trackNumber == currentPlaylist.length) {
+      if (trackNumber === currentPlaylist.length - 1) {
         dispatch({
           type: "SET_TRACK_NUMBER",
           trackNumber: 0,

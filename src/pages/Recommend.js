@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from "../DataLayer";
 import { TextField } from "@mui/material";
@@ -8,6 +8,34 @@ const query = {};
 
 function Recommend() {
   const [{ genres }, dispatch] = useDataLayerValue();
+  const [artistSearchInput, setArtistSearchInput] = useState(null);
+  const [songSearchInput, setSongSearchInput] = useState(null);
+  const [artistData, setArtistData] = useState([]);
+  const [songData, setSongData] = useState([]);
+  
+  function getArtistsData() {
+    if (artistSearchInput) {
+      s.searchArtists(artistSearchInput).then((items) => {
+        console.log(items.artists.items);
+        setArtistData(items.artists.items);
+      });
+    }
+  }
+
+  function getSongsData() {
+    s.searchTracks(songSearchInput).then((items) => {
+      console.log(items.tracks.items);
+      setSongData(items.tracks.items);
+    });
+  }
+
+  useEffect(() => {
+    getSongsData();
+  }, [songSearchInput]);
+  useEffect(() => {
+    getArtistsData();
+  }, [artistSearchInput]);
+
   useEffect(() => {
     s.getAvailableGenreSeeds().then((genres) => {
       console.log(genres);
@@ -21,6 +49,7 @@ function Recommend() {
     //    console.log(category);
     //  });
   }, []);
+
   const genreBubbles = genres.map((genreItem) => {
     return <GenreBubble key={genreItem} name={genreItem} />;
   });
@@ -31,13 +60,47 @@ function Recommend() {
         <p>Recommend me a song based on these criterias</p>
         <div className="genre-container">{genreBubbles}</div>
         <div className="search-container">
-          <div className="search--songs">
+          <div className="search search--songs">
             <label>Search Songs</label>
-            <TextField id="outlined-basic" variant="outlined" fullWidth />
+            <TextField
+              id="song-input"
+              variant="outlined"
+              fullWidth
+              placeholder="Search Songs"
+              onChange={(e) => setSongSearchInput(e.target.value)}
+            />
+            {songSearchInput && (
+              <div className="data-results">
+                {songData.map((value, key) => {
+                  return (
+                    <div className="result-item" key={value.id}>
+                      {value.name}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
-          <div className="search--artists">
+          <div className="search search--artists">
             <label>Search Artists</label>
-            <TextField id="outlined-basic" variant="outlined" fullWidth />
+            <TextField
+              id="artist-input"
+              variant="outlined"
+              fullWidth
+              placeholder="Search Artists"
+              onChange={(e) => setArtistSearchInput(e.target.value)}
+            />
+            {artistSearchInput && (
+              <div className="data-results">
+                {artistData.map((value, key) => {
+                  return (
+                    <div className="result-item" key={value.id}>
+                      {value.name}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
         <div className="results-container"></div>

@@ -2,10 +2,11 @@ import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from "../DataLayer";
 const s = new SpotifyWebApi();
+let genreArray = [];
 
 function GenreBubble(props) {
   const [{ selectedGenres }, dispatch] = useDataLayerValue();
-  const genreArray = [];
+
   function getGenreName() {
     if (!genreArray.includes(props.name)) {
       genreArray.push(props.name);
@@ -14,7 +15,11 @@ function GenreBubble(props) {
         action: genreArray,
       });
     } else {
-      alert("Already selected");
+      genreArray = genreArray.filter((item) => item !== props.name);
+      dispatch({
+        type: "SET_SELECTED_GENRES",
+        action: genreArray,
+      });
     }
     console.log(genreArray);
   }

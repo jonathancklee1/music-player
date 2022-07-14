@@ -5,26 +5,26 @@ const s = new SpotifyWebApi();
 let genreArray = [];
 
 function GenreBubble(props) {
-  const [{ selectedGenres }, dispatch] = useDataLayerValue();
+  // const [{ selectedGenres }, dispatch] = useDataLayerValue();
 
-  function getGenreName() {
-    if (!genreArray.includes(props.name)) {
-      genreArray.push(props.name);
-      dispatch({
-        type: "SET_SELECTED_GENRES",
-        action: genreArray,
-      });
-    } else {
-      genreArray = genreArray.filter((item) => item !== props.name);
-      dispatch({
-        type: "SET_SELECTED_GENRES",
-        action: genreArray,
-      });
-    }
-    console.log(genreArray);
-  }
+  // function getGenreName() {
+  //   if (!genreArray.includes(props.name)) {
+  //     genreArray.push(props.name);
+  //     dispatch({
+  //       type: "SET_SELECTED_GENRES",
+  //       action: genreArray,
+  //     });
+  //   } else {
+  //     genreArray = genreArray.filter((item) => item !== props.name);
+  //     dispatch({
+  //       type: "SET_SELECTED_GENRES",
+  //       action: genreArray,
+  //     });
+  //   }
+  //   console.log(genreArray);
+  // }
   return (
-    <div className="genre-bubble" onClick={getGenreName}>
+    <div className="genre-bubble" onClick={props.removeGenre}>
       <span className="genre-bubble-name">{props.name}</span>
     </div>
   );

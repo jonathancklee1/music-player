@@ -1,13 +1,11 @@
 @use "../abstracts/" as *;
 @use "../utils/" as *;
 .genre-bubble {
-  width: 100%;
-  max-width: 9em;
-  min-height: 3.5em;
+  min-height: 2em;
   border-radius: 35px;
   color: white;
   background-color: $bubble-clr;
-  padding: 0.3em 0.5em;
+  padding:0.8em;
   display: grid;
   place-items: center;
   text-align: center;
@@ -17,5 +15,6 @@
   }
   span {
     text-transform: uppercase;
+    font-size: 1rem;
   }
 }

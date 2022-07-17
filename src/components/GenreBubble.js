@@ -1,6 +1,8 @@
 import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from "../DataLayer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 const s = new SpotifyWebApi();
 let genreArray = [];
 
@@ -26,6 +28,7 @@ function GenreBubble(props) {
   return (
     <div className="genre-bubble" onClick={props.removeGenre}>
       <span className="genre-bubble-name">{props.name}</span>
+      <FontAwesomeIcon icon={faTimes} />
     </div>
   );
 }

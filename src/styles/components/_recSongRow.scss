@@ -1,0 +1,30 @@
+@use "../abstracts/" as *;
+@use "../utils/" as *;
+.rec__song-row {
+  width: 100%;
+  color: $light-blue;
+
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  &:hover {
+    background-color: $light-blue;
+    color: white;
+  }
+  img {
+    max-width: 5.5em;
+    margin-right: 1em;
+  }
+  span {
+    display: block;
+  }
+}
+
+.rec__song-name {
+  // color: $light-blue;
+  margin-right: 1em;
+  font-weight: bolder;
+}
+

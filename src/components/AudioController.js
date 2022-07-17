@@ -20,8 +20,8 @@ function AudioController() {
     { currentSong, playing, isFav, currentPlaylist, trackNumber },
     dispatch,
   ] = useDataLayerValue();
-  const favAdded = () => toast("Added to your favourites in Spotify");
-  const favError = () => toast("Removed from your favourites in Spotify");
+  const favAddedMsg = () => toast("Added to your favourites in Spotify");
+  const favErrorMsg = () => toast("Removed from your favourites in Spotify");
 
   let audio = useRef();
   useEffect(() => {
@@ -70,14 +70,14 @@ function AudioController() {
         type: "SET_ISFAV",
         isFav: true,
       });
-      favAdded();
+      favAddedMsg();
     } else if (isFav && currentSong) {
       s.removeFromMySavedTracks([currentSong?.id]);
       dispatch({
         type: "SET_ISFAV",
         isFav: false,
       });
-      favError();
+      favErrorMsg();
     } else {
       alert("Song unavailable or is already in your favourites!");
     }

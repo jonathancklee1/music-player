@@ -2,19 +2,26 @@
 @use "../utils/" as *;
 .genre-bubble {
   min-height: 2em;
+  min-width: 7em;
   border-radius: 35px;
   color: white;
   background-color: $bubble-clr;
-  padding:0.8em;
-  display: grid;
-  place-items: center;
+  padding: 0.8em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   text-align: center;
   cursor: pointer;
+  transition: all 0.3s ease;
   &:hover {
     background-color: $light-blue;
   }
   span {
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 1rem;
+    margin-right: 0.7em;
+  }
+  svg {
+    color: red;
   }
 }

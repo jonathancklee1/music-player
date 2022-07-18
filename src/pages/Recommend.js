@@ -5,6 +5,7 @@ import { TextField, Menu, MenuItem, Button } from "@mui/material";
 import GenreBubble from "../components/GenreBubble";
 import RecSongRow from "../components/RecSongRow";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-scroll";
 import {
   faAngleDown,
   faRecordVinyl,
@@ -53,11 +54,9 @@ function Recommend() {
       dispatch({ type: "SET_GENRES", genres: genres.genres });
     });
   }, []);
+
   function getRec() {
     let genreSeeds = "";
-    console.log(selectedArtist);
-    console.log(selectedSong);
-    console.log(selectedGenres);
     if (selectedGenres.length === 0 && !selectedSong && !selectedArtist) {
       console.log("NO REC MSG");
       noRecsMsg();
@@ -77,6 +76,13 @@ function Recommend() {
     }).then((rec) => {
       setRecommendedSongs(rec.tracks);
     });
+  }
+  function clearSelected(type) {
+    if (type === "song") {
+      setSelectedSong(null);
+    } else {
+      setSelectedArtist(null);
+    }
   }
 
   function getGenreName(name) {
@@ -106,6 +112,7 @@ function Recommend() {
   function getSongsData() {
     s.searchTracks(songSearchInput).then((items) => {
       setSongData(items.tracks.items);
+      console.log(items.tracks.items);
     });
   }
   function removeGenre(genre) {
@@ -128,18 +135,6 @@ function Recommend() {
 
   return (
     <div className="container rec__container">
-      {" "}
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className="rec__content">
         <h1>Recommend Me</h1>
         <p>Recommend me a song based on selected criteria</p>
@@ -191,7 +186,7 @@ function Recommend() {
               id="song-input"
               variant="outlined"
               fullWidth
-              placeholder="Search Songs"
+              placeholder="Song Name"
               onChange={(e) => setSongSearchInput(e.target.value)}
             />
             {songSearchInput && (
@@ -216,7 +211,6 @@ function Recommend() {
           </div>
           <div className="search search--artists">
             <label>
-              {" "}
               <FontAwesomeIcon icon={faHeadphones} />
               Search Artists
             </label>
@@ -224,7 +218,7 @@ function Recommend() {
               id="artist-input"
               variant="outlined"
               fullWidth
-              placeholder="Search Artists"
+              placeholder="Artist Name"
               onChange={(e) => setArtistSearchInput(e.target.value)}
             />
             {artistSearchInput && (
@@ -267,7 +261,21 @@ function Recommend() {
             <div className="selected-div song">
               <p>Song</p>
               {selectedSong ? (
-                <span>{selectedSong?.name}</span>
+                <>
+                  <img src={selectedSong?.album.images[0].url}></img>
+                  <span id="selected-song-name">{selectedSong?.name}</span>
+                  <span id="selected-song-artist">
+                    {selectedSong?.artists[0].name}
+                  </span>
+                  <button
+                    className="clear-selection-btn"
+                    onClick={() => {
+                      clearSelected("song");
+                    }}
+                  >
+                    Clear
+                  </button>
+                </>
               ) : (
                 <span>No Song Selected</span>
               )}
@@ -275,30 +283,48 @@ function Recommend() {
             <div className="selected-div genre">
               <p>Artist</p>
               {selectedArtist ? (
-                <span>{selectedArtist?.name}</span>
+                <>
+                  <img src={selectedArtist.images[0]?.url}></img>
+                  <span>{selectedArtist?.name}</span>
+                  <button
+                    className="clear-selection-btn"
+                    onClick={() => {
+                      clearSelected("artist");
+                    }}
+                  >
+                    Clear
+                  </button>
+                </>
               ) : (
                 <span>No Artist Selected</span>
               )}
             </div>
           </div>
-          <button className="recommend-btn" onClick={getRec}>
+          <Link
+            className="recommend-btn"
+            offset={-100}
+            to="resultsContainer"
+            smooth={true}
+            duration={700}
+            onClick={getRec}
+          >
             Recommend Me!
-          </button>
+          </Link>
         </div>
-        {recommendedSongs && (
-          <div className="results-container">
-            {recommendedSongs.map((song) => {
+        <div className="results-container" id="resultsContainer">
+          {recommendedSongs &&
+            recommendedSongs.map((song) => {
               return (
                 <RecSongRow
                   key={song.id}
+                  song={song}
                   img={song.album.images[0].url}
                   name={song.name}
                   artist={song.artists[0].name}
                 />
               );
             })}
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );

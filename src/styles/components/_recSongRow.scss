@@ -11,7 +11,7 @@
   transition: all 0.4s ease;
   &:hover {
     background-color: $light-blue;
-    color: white;
+    color: $white;
   }
   img {
     max-width: 5.5em;
@@ -23,8 +23,12 @@
 }
 
 .rec__song-name {
-  // color: $light-blue;
   margin-right: 1em;
   font-weight: bolder;
 }
 
+@include breakpoint("small") {
+  .rec__song-row {
+    font-size: 1.2rem;
+  }
+}

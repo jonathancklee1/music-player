@@ -1,10 +1,13 @@
 import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from "../DataLayer";
+import { toast } from "react-toastify";
+
 const s = new SpotifyWebApi();
 function CategoryCard(props) {
   const [{}, dispatch] = useDataLayerValue();
-
+  const trackErrorMsg = () =>
+    toast.error("Track cannot be played! Please select another category");
   function getRandomPlaylist() {
     return s.getCategoryPlaylists(props.id).then((item) => {
       const playlistArr = item?.playlists?.items;
@@ -27,7 +30,7 @@ function CategoryCard(props) {
         });
       });
     } catch (error) {
-      alert("Track cannot be played! Please select another category");
+      trackErrorMsg();
     }
   }
   return (

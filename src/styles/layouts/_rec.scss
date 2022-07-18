@@ -18,19 +18,29 @@
 }
 .selected-div {
   display: flex;
+  gap: 0.5em;
   align-items: center;
   margin-bottom: 1em;
+  flex-direction: column;
   width: 100%;
   border: 1px solid $light-blue;
   border-radius: 8px;
-  padding: 2em 0.8em;
+  padding: 2em 1.5em;
+  text-align: center;
   p {
     font-size: 1.2rem;
-
-    margin-right: 1em;
+    margin-bottom: 0.5em;
   }
   span {
+    color: $light-blue;
     font-size: 1.1rem;
+  }
+  img {
+    max-width: 4em;
+    margin-right: 0.5em;
+  }
+  #selected-song-name {
+    font-weight: bold;
   }
 }
 .genre-container {
@@ -113,7 +123,8 @@
   & > p {
     text-align: center;
     font-size: 1.3rem;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
   }
 }
 .recommend-btn {
@@ -127,9 +138,22 @@
   margin-bottom: 1em;
   font-weight: bold;
   transition: all 0.4s ease;
+  cursor: pointer;
   &:hover {
     background-color: $light-blue;
     color: $white;
+  }
+}
+.clear-selection-btn {
+  background-color: $light-blue;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  padding: 0.6em 1.2em;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: red;
   }
 }
 #genre-menu {
@@ -177,14 +201,6 @@
   .search-container {
     display: flex;
   }
-  // .selection-container {
-  //   flex-wrap: wrap;
-  //   flex-direction: row;
-  // }
-  // .selected-div {
-  //   flex-direction: column;
-  //   max-width: 22em;
-  // }
 }
 @include breakpoint("medium") {
   .selection-container {
@@ -192,13 +208,8 @@
     flex-direction: row;
   }
   .selected-div {
-    flex-direction: column;
     width: 48%;
-    p {
-      margin-bottom: 0.7em;
-      margin-right: 0;
-    }
-    // max-width: 20em;
+    min-height: 10em;
   }
 }
 @include breakpoint("large") {

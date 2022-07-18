@@ -4,8 +4,8 @@
   min-height: 2em;
   min-width: 7em;
   border-radius: 35px;
-  color: white;
-  background-color: $bubble-clr;
+  // background-color: $bubble-clr;
+  border:2px solid $bubble-clr;
   padding: 0.8em 1em;
   display: flex;
   align-items: center;
@@ -14,12 +14,14 @@
   cursor: pointer;
   transition: all 0.3s ease;
   &:hover {
-    background-color: $light-blue;
+    background-color: $bubble-clr;
   }
   span {
     text-transform: capitalize;
+    font-weight: bold;
     font-size: 1rem;
     margin-right: 0.7em;
+    color: $bubble-clr;
   }
   svg {
     color: red;

@@ -20,8 +20,11 @@ function AudioController() {
     { currentSong, playing, isFav, currentPlaylist, trackNumber },
     dispatch,
   ] = useDataLayerValue();
-  const favAddedMsg = () => toast("Added to your favourites in Spotify");
-  const favErrorMsg = () => toast("Removed from your favourites in Spotify");
+  const favAddedMsg = () => toast.success("Added to your favourites in Spotify");
+  const favRemovedMsg = () => toast.alert("Removed from your favourites in Spotify");
+  const favErrorMsg = () =>
+    toast.error("Song not selected or is already in your favourites!");
+  const previewErrorMsg = () => toast.error("No preview available");
 
   let audio = useRef();
   useEffect(() => {
@@ -30,8 +33,8 @@ function AudioController() {
     if (currentPlaylist) {
       console.log(currentPlaylist[trackNumber]);
     }
-    if (currentSong && currentSong?.preview_url === null) {
-      alert("No Preview available");
+    if (currentSong && !currentSong?.preview_url) {
+      previewErrorMsg();
     }
     if (audio.currentTime === 0) {
       console.log("audio  reset");
@@ -47,7 +50,6 @@ function AudioController() {
   }, [currentSong, playing]);
   useEffect(() => {
     if (currentPlaylist) {
-      // console.log(currentPlaylist.length);
       dispatch({
         type: "SET_CURRENTSONG",
         currentSong: currentPlaylist[trackNumber].track,
@@ -77,9 +79,9 @@ function AudioController() {
         type: "SET_ISFAV",
         isFav: false,
       });
-      favErrorMsg();
+      favRemovedMsg();
     } else {
-      alert("Song unavailable or is already in your favourites!");
+      favErrorMsg();
     }
   }
   function checkFavourite() {
@@ -139,18 +141,19 @@ function AudioController() {
 
   return (
     <>
+      {" "}
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="controller__wrapper">
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
         <audio
           ref={audio}
           src={!currentSong?.preview_url ? "" : currentSong?.preview_url}

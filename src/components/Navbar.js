@@ -25,18 +25,27 @@ function Navbar() {
   return (
     <nav className="navbar">
       <h1> Musicify</h1>
+
       <ul className={isOpen ? "navbar__list open" : "navbar__list"}>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={handleToggle}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="recommend">Recommendations</Link>
+          <Link to="recommend" onClick={handleToggle}>
+            Recommendations
+          </Link>
         </li>
         <li>
-          <Link to="categories">Discover</Link>
+          <Link to="categories" onClick={handleToggle}>
+            Discover
+          </Link>
         </li>
         <li>
-          <Link to="library">Your Library</Link>
+          <Link to="library" onClick={handleToggle}>
+            Your Library
+          </Link>
         </li>
       </ul>
       <img

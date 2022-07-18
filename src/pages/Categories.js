@@ -14,13 +14,6 @@ function Categories() {
         categories: category.categories.items,
       });
     });
-    s.getRecommendations({
-      seed_artists: "4NHQUGzhtTLFvgF5SZesLK",
-      // seed_genres: "classical,country",
-      // seed_tracks: "0c6xIDDpzE81m2q797ordA",
-    }).then((category) => {
-      console.log(category);
-    });
   }, []);
 
   const categoryCards = categories.map((categoryItem) => {

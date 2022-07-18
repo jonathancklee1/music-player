@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/jonathancklee1/music-player/static/css/main.77d05489.css",
-    "main.js": "/jonathancklee1/music-player/static/js/main.2f20b249.js",
-    "static/js/787.ded37e57.chunk.js": "/jonathancklee1/music-player/static/js/787.ded37e57.chunk.js",
-    "static/media/gunship.webp": "/jonathancklee1/music-player/static/media/gunship.218ddad9479a9554aa37.webp",
-    "index.html": "/jonathancklee1/music-player/index.html",
-    "main.77d05489.css.map": "/jonathancklee1/music-player/static/css/main.77d05489.css.map",
-    "main.2f20b249.js.map": "/jonathancklee1/music-player/static/js/main.2f20b249.js.map",
-    "787.ded37e57.chunk.js.map": "/jonathancklee1/music-player/static/js/787.ded37e57.chunk.js.map"
+    "main.css": "/music-player/static/css/main.6b9b34c3.css",
+    "main.js": "/music-player/static/js/main.53da6b35.js",
+    "static/js/787.ded37e57.chunk.js": "/music-player/static/js/787.ded37e57.chunk.js",
+    "static/media/gunship.webp": "/music-player/static/media/gunship.218ddad9479a9554aa37.webp",
+    "index.html": "/music-player/index.html",
+    "main.6b9b34c3.css.map": "/music-player/static/css/main.6b9b34c3.css.map",
+    "main.53da6b35.js.map": "/music-player/static/js/main.53da6b35.js.map",
+    "787.ded37e57.chunk.js.map": "/music-player/static/js/787.ded37e57.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.77d05489.css",
-    "static/js/main.2f20b249.js"
+    "static/css/main.6b9b34c3.css",
+    "static/js/main.53da6b35.js"
   ]
 }

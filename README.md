@@ -1,5 +1,8 @@
 # Musicify
 
+### Disclaimer!
+This project is still under development mode in Spotify's developer console. Most API calls such as retrieving track/artist data will not be available unless the user is registered on the Spotify dashboard.
+
 ## About The Project
 
 Musicify is a Spotify "extension" website that is built around it's API and utilises it's useful features and data extraction to add to your music listening experience. By loggin in to an exisiting Spotify account, users can be recommmended new songs based on what they enter in the filters, discover new tracks from a particular genre or just to view through their playlists. Songs previews* can be played when selected through an audio controller at the bottom. If you enjoy the song you are listening to, you can favourite the song into the "liked songs" playlist on the official Spotify app.

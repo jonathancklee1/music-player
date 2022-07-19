@@ -1,5 +1,5 @@
 const client_id = "51f88b9ea1154a2aa68e455cdf71ccbb";
-const redirect_uri = "https://jonathancklee1.github.io/music-player";
+const redirect_uri = "https://jonathancklee1.github.io/music-player/";
 const authEndpoint = "https://accounts.spotify.com/authorize?";
 const scopes = [
   "user-library-read",

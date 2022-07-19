@@ -6,7 +6,7 @@ import Error from "./pages/Error";
 import Library from "./pages/Library";
 import Login from "./pages/Login";
 import Recommend from "./pages/Recommend";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDataLayerValue } from "./DataLayer";
 import SpotifyWebApi from "spotify-web-api-js";
 import Categories from "./pages/Categories";
@@ -33,7 +33,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/music-player/" element={<SharedLayout />}>
-          <Route path="home" element={<Home />}></Route>
+          <Route index element={<Home />}></Route>
           <Route path="categories" element={<Categories />}></Route>
           <Route path="recommend" element={<Recommend />}></Route>
           <Route path="library" element={<Library />}></Route>

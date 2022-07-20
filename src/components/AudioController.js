@@ -21,7 +21,7 @@ function AudioController() {
     dispatch,
   ] = useDataLayerValue();
   const favAddedMsg = () => toast.success("Added to your favourites in Spotify");
-  const favRemovedMsg = () => toast.alert("Removed from your favourites in Spotify");
+  const favRemovedMsg = () => toast.warn("Removed from your favourites in Spotify");
   const favErrorMsg = () =>
     toast.error("Song not selected or is already in your favourites!");
   const previewErrorMsg = () => toast.error("No preview available");

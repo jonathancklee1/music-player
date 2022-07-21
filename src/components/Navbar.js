@@ -28,7 +28,7 @@ function Navbar() {
 
       <ul className={isOpen ? "navbar__list open" : "navbar__list"}>
         <li>
-          <Link to="/music-player/" onClick={handleToggle}>
+          <Link to="/" onClick={handleToggle}>
             Home
           </Link>
         </li>

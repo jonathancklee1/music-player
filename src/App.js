@@ -31,7 +31,7 @@ function App() {
   ) : (
     <BrowserRouter basename="/music-player">
       <Routes>
-        <Route path="/music-player/" element={<SharedLayout />}>
+        <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />}></Route>
           <Route path="categories" element={<Categories />}></Route>
           <Route path="recommend" element={<Recommend />}></Route>

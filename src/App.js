@@ -1,5 +1,5 @@
 import "./styles/style.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,HashRouter } from "react-router-dom";
 import SharedLayout from "./pages/SharedLayout";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
@@ -23,14 +23,13 @@ function App() {
         type: "SET_TOKEN",
         token: _token,
       });
-      console.log(token);
       s.setAccessToken(_token);
     }
   }, []);
   return !token ? (
     <Login />
   ) : (
-    <BrowserRouter>
+    <BrowserRouter basename="/music-player">
       <Routes>
         <Route path="/music-player/" element={<SharedLayout />}>
           <Route index element={<Home />}></Route>

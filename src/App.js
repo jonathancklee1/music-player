@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     const hash = window.location.hash;
-    window.location.hash = "";
+    window.location.hash = ""; // removes user token from url
     const _token = hash.split("&")[0].split("=")[1];
     if (_token) {
       dispatch({

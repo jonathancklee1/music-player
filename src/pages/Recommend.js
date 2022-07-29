@@ -12,10 +12,9 @@ import {
   faMusic,
   faHeadphones,
 } from "@fortawesome/free-solid-svg-icons";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const s = new SpotifyWebApi();
-const query = {};
 let genreArray = [];
 
 function Recommend() {
@@ -45,6 +44,7 @@ function Recommend() {
   useEffect(() => {
     getSongsData();
   }, [songSearchInput]);
+
   useEffect(() => {
     getArtistsData();
   }, [artistSearchInput]);
@@ -55,28 +55,25 @@ function Recommend() {
     });
   }, []);
 
+  // Get recommended songs based on user input
   function getRec() {
     let genreSeeds = "";
     if (selectedGenres.length === 0 && !selectedSong && !selectedArtist) {
-      console.log("NO REC MSG");
       noRecsMsg();
       return;
     }
     if (selectedGenres !== []) {
       genreSeeds = selectedGenres.toString();
     }
-    console.log(genreSeeds);
     s.getRecommendations({
       ...(genreSeeds !== "" && { seed_genres: genreSeeds }),
       ...(selectedArtist && { seed_artists: selectedArtist.id }),
       ...(selectedSong && { seed_tracks: selectedSong.id }),
-      // seed_genres: genreSeeds,
-      // seed_artists: selectedArtist.id,
-      // seed_tracks: selectedSong.id,
     }).then((rec) => {
       setRecommendedSongs(rec.tracks);
     });
   }
+
   function clearSelected(type) {
     if (type === "song") {
       setSelectedSong(null);
@@ -85,6 +82,7 @@ function Recommend() {
     }
   }
 
+  // Add or remove genre from already selected genres
   function getGenreName(name) {
     if (!genreArray.includes(name)) {
       genreArray.push(name);
@@ -99,7 +97,6 @@ function Recommend() {
         selectedGenres: genreArray,
       });
     }
-    console.log(genreArray);
   }
   function getArtistsData() {
     if (artistSearchInput) {
@@ -112,11 +109,9 @@ function Recommend() {
   function getSongsData() {
     s.searchTracks(songSearchInput).then((items) => {
       setSongData(items.tracks.items);
-      console.log(items.tracks.items);
     });
   }
   function removeGenre(genre) {
-    console.log(genre);
     genreArray = genreArray.filter((item) => item !== genre);
     dispatch({
       type: "SET_SELECTED_GENRES",

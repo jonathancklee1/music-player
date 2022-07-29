@@ -12,9 +12,10 @@ function Navbar() {
     setOpen(!isOpen);
   };
   const [{ user }, dispatch] = useDataLayerValue();
+
+  // Set current user
   useEffect(() => {
     s.getMe().then((user) => {
-      console.log(user);
       dispatch({
         type: "SET_USER",
         user: user,

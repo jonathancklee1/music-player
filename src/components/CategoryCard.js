@@ -8,22 +8,22 @@ function CategoryCard(props) {
   const [{}, dispatch] = useDataLayerValue();
   const trackErrorMsg = () =>
     toast.error("Track cannot be played! Please select another category");
+  
+  // Get a random playlist from a category
   function getRandomPlaylist() {
     return s.getCategoryPlaylists(props.id).then((item) => {
       const playlistArr = item?.playlists?.items;
-      console.log(playlistArr);
       return playlistArr[Math.floor(Math.random() * playlistArr.length)];
     });
   }
+  // Get a random song from the selected playlist
   async function getRandomSong() {
     try {
       const playlist = await getRandomPlaylist();
-      console.log(playlist);
       s.getPlaylistTracks(playlist.id).then((tracks) => {
         const tracksArr = tracks.items;
         const randomSong =
           tracksArr[Math.floor(Math.random() * tracksArr.length)].track;
-        console.log(randomSong);
         dispatch({
           type: "SET_CURRENTSONG",
           currentSong: randomSong,

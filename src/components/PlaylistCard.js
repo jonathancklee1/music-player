@@ -6,10 +6,11 @@ import SpotifyWebApi from "spotify-web-api-js";
 
 const s = new SpotifyWebApi();
 function PlaylistCard(props) {
-  const [{ currentSong }, dispatch] = useDataLayerValue();
+  const [{  }, dispatch] = useDataLayerValue();
+
+  // Get clicked playlist and set current song to first song in the list
   function setPlaylist() {
     s.getPlaylistTracks(props.id).then((tracks) => {
-      console.log(tracks.items);
       dispatch({
         type: "SET_CURRENT_PLAYLIST",
         currentPlaylist: tracks.items,

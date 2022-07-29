@@ -6,6 +6,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 const s = new SpotifyWebApi();
 function Library() {
   const [{ playlists }, dispatch] = useDataLayerValue();
+  // Retrieve user's playlists
   useEffect(() => {
     s.getUserPlaylists({ limit: 50 }).then((playlist) => {
       dispatch({
@@ -14,6 +15,7 @@ function Library() {
       });
     });
   }, []);
+  // Create playlist card for every playlist that the user has
   const playlistSongComp = playlists.map((song) => {
     return (
       <PlaylistCard

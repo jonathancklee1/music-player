@@ -2,6 +2,8 @@ import React from "react";
 import { useDataLayerValue } from "../DataLayer";
 function RecSongRow(props) {
   const [{}, dispatch] = useDataLayerValue();
+
+  // Set current song to the selected recommended song row and play it
   function setCurrentSong() {
     dispatch({
       type: "SET_CURRENTSONG",

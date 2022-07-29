@@ -6,9 +6,10 @@ const s = new SpotifyWebApi();
 
 function Categories() {
   const [{ categories }, dispatch] = useDataLayerValue();
+
+  // Display categories
   useEffect(() => {
     s.getCategories({ limit: 50 }).then((category) => {
-      console.log(category.categories.items);
       dispatch({
         type: "SET_CATEGORIES",
         categories: category.categories.items,
@@ -16,6 +17,7 @@ function Categories() {
     });
   }, []);
 
+  // Create a card for each category
   const categoryCards = categories.map((categoryItem) => {
     return (
       <CategoryCard

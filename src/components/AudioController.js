@@ -20,8 +20,10 @@ function AudioController() {
     { currentSong, playing, isFav, currentPlaylist, trackNumber },
     dispatch,
   ] = useDataLayerValue();
-  const favAddedMsg = () => toast.success("Added to your favourites in Spotify");
-  const favRemovedMsg = () => toast.warn("Removed from your favourites in Spotify");
+  const favAddedMsg = () =>
+    toast.success("Added to your favourites in Spotify");
+  const favRemovedMsg = () =>
+    toast.warn("Removed from your favourites in Spotify");
   const favErrorMsg = () =>
     toast.error("Song not selected or is already in your favourites!");
   const previewErrorMsg = () => toast.error("No preview available");
@@ -29,25 +31,20 @@ function AudioController() {
   let audio = useRef();
   useEffect(() => {
     checkFavourite();
-
-    if (currentPlaylist) {
-      console.log(currentPlaylist[trackNumber]);
-    }
     if (currentSong && !currentSong?.preview_url) {
       previewErrorMsg();
     }
     if (audio.currentTime === 0) {
-      console.log("audio  reset");
       playing = false;
     }
     if (!playing) {
-      console.log("not playing");
       audio.current.pause();
     } else {
-      console.log(" playing");
       audio.current.play();
     }
   }, [currentSong, playing]);
+
+  // Set current song when playlist or track number changes
   useEffect(() => {
     if (currentPlaylist) {
       dispatch({
@@ -64,8 +61,8 @@ function AudioController() {
     });
   }
 
+  // Sets current song that is playing to favourite in Spotify
   async function setFavourite() {
-    console.log(isFav);
     if (!isFav && currentSong) {
       s.addToMySavedTracks([currentSong?.id]);
       dispatch({
@@ -84,6 +81,8 @@ function AudioController() {
       favErrorMsg();
     }
   }
+
+  // Checks if selected song is already in favourites playlist
   function checkFavourite() {
     try {
       const inSavedTracks = s
@@ -108,6 +107,8 @@ function AudioController() {
       alert("No song selected!");
     }
   }
+
+  // Gets the next track in the current playlist
   function getNextTrack() {
     if (currentPlaylist) {
       if (trackNumber === currentPlaylist.length - 1) {
@@ -123,6 +124,8 @@ function AudioController() {
       }
     }
   }
+
+  // Gets the previous track in the current playlist
   function getPrevTrack() {
     if (currentPlaylist) {
       if (trackNumber === 0) {
@@ -184,17 +187,7 @@ function AudioController() {
             </h3>
           </div>
           <div className="controls-wrapper">
-            <div
-              className="controls controls__prev"
-              // onClick={() => {
-              //   const device = s.getMyDevices().then((id) => {
-              //     s.play("d38e178fafd40d35c704e8150b75cab892c3c08b");
-              //     console.log(id);
-              //     return id.devices[0].id;
-              //   });
-              // }}
-              onClick={getPrevTrack}
-            >
+            <div className="controls controls__prev" onClick={getPrevTrack}>
               <FontAwesomeIcon icon={faBackwardStep} />
             </div>
             <div className="controls controls__play" onClick={togglePlay}>

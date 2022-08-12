@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 99;
   h1 {
     margin-right: auto;
     color: $dark-blue;
@@ -23,12 +23,12 @@
   ul {
     background-color: $nav-clr--light;
     position: absolute;
-    top: -400%;
+    top: -500%;
     right: 0;
     left: 0;
     border-top: 1px solid rgb(185, 185, 185);
     padding: 2.5em 1.5em 1em 1.5em;
-    z-index: -1;
+    z-index: 9;
     &.open {
       top: 100%;
     }
